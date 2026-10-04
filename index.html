@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>504 error</title>
+  <link rel="stylesheet" href="/style.css?v=final-node-1">
+</head>
+<body>
+  <main id="frame1" class="page frame frame-1">
+    <div class="error-code" data-text="504">504</div>
+    <div class="error-word">error</div>
+
+    <div class="presence">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span><span id="onlineCount">0</span> человек сейчас ждут ответа этого адреса</span>
+    </div>
+
+    <div class="refresh-counter">вы обновили <span id="refreshCount">0</span> раз</div>
+
+    <button id="refreshButton" class="refresh-button" type="button">обновить страницу</button>
+  </main>
+
+  <main id="frame2" class="page frame frame-2" aria-hidden="true">
+    <div class="f2-text intro-copy">
+      <p>Один человек. Один ресурс.</p>
+      <p>Тысячи привычек, которые он не планировал.</p>
+    </div>
+    <p class="f2-title">Добро пожаловать</p>
+
+    <div class="f2-img f2-img-8"></div>
+    <div class="f2-img f2-img-12"></div>
+
+    <!-- Decorative snakes from the Figma composition. They are separate so they can rotate. -->
+    <div class="f2-snake f2-snake-top" aria-hidden="true"></div>
+    <div class="f2-snake f2-snake-bottom" aria-hidden="true"></div>
+
+    <!-- Eye-like background elements from the Figma composition. -->
+    <div class="f2-eye f2-eye-right" aria-hidden="true"></div>
+    <div class="f2-eye f2-eye-left" aria-hidden="true"></div>
+
+    <div class="f2-text loop-copy">
+      <p>Петля</p>
+      <p>&nbsp;</p>
+      <p>Создатель изменил ресурс-и изменил поведение тысяч людей.</p>
+      <p>&nbsp;</p>
+      <p>Люди начали обновлять страницу с надеждой на изменение, жаловаться на ошибку.</p>
+      <p>&nbsp;</p>
+      <p>Только благодаря коллективным следам создатель узнал об ошибке и может исправить.</p>
+    </div>
+
+    <div class="f2-center-image"></div>
+  </main>
+
+  <div class="presence presence-overlay">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span><span id="onlineCountOverlay">0</span> человек сейчас ждут ответа этого адреса</span>
+  </div>
+
+  <div class="chat-wrap">
+    <button id="chatToggle" class="chat-button" type="button" aria-expanded="false">чат</button>
+    <section id="chatPanel" class="chat-panel" aria-hidden="true">
+      <div class="chat-header">
+        <span>чат</span>
+        <button id="chatClose" type="button" aria-label="Закрыть">×</button>
+      </div>
+      <div id="messages" class="messages"></div>
+      <form id="chatForm" class="chat-form">
+        <input id="chatInput" autocomplete="off" maxlength="1000" placeholder="сообщение">
+        <button type="submit">→</button>
+      </form>
+    </section>
+  </div>
+
+  <script src="/app.js?v=final-node-1"></script>
+</body>
+</html>

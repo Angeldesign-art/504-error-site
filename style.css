@@ -1,0 +1,467 @@
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: #151515;
+  color: #fff;
+}
+
+body { overflow-x: hidden; }
+
+.page {
+  position: relative;
+  width: 1440px;
+  margin: 0 auto;
+  background: #151515;
+  overflow: hidden;
+}
+
+.frame { display: none; }
+.frame.active { display: block; }
+.frame-1 { height: 1024px; }
+.frame-2 { height: 1910px; }
+
+/* FRAME 1 */
+.error-code {
+  position: absolute;
+  left: 50%;
+  top: calc(50% - 182px);
+  width: max-content;
+  height: 172px;
+  display: grid;
+  place-items: center;
+  transform: translateX(-50%);
+  font-family: "8Pin Matrix", "Courier New", monospace;
+  font-size: 150px;
+  line-height: 1;
+  letter-spacing: 36px;
+  padding-left: 36px;
+  text-align: center;
+  font-weight: 400;
+  white-space: nowrap;
+  isolation: isolate;
+  overflow: visible;
+  animation: glitchMain 3.1s steps(1, end) infinite;
+}
+
+.error-code::before,
+.error-code::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 2;
+  letter-spacing: inherit;
+  padding-left: inherit;
+}
+
+.error-code::before {
+  color: #ff3030;
+  text-shadow: -4px 0 #ff3030;
+  mix-blend-mode: screen;
+  animation: glitchRed 3.1s steps(1, end) infinite;
+}
+
+.error-code::after {
+  color: #20e8ff;
+  text-shadow: 4px 0 #20e8ff;
+  mix-blend-mode: screen;
+  animation: glitchBlue 3.1s steps(1, end) infinite;
+}
+
+@keyframes glitchMain {
+  0%, 68%, 100% { transform: translateX(-50%); }
+  69% { transform: translateX(calc(-50% + 2px)); }
+  70% { transform: translateX(calc(-50% - 3px)); }
+  71% { transform: translateX(calc(-50% + 1px)); }
+  72% { transform: translateX(-50%); }
+}
+
+@keyframes glitchRed {
+  0%, 67%, 100% { opacity: 0; clip-path: inset(0 0 100% 0); transform: translate(0); }
+  68% { opacity: .85; clip-path: inset(8% 0 66% 0); transform: translate(-5px, 0); }
+  69% { opacity: .65; clip-path: inset(56% 0 25% 0); transform: translate(4px, 1px); }
+  70% { opacity: .9; clip-path: inset(32% 0 48% 0); transform: translate(-3px, -1px); }
+  71% { opacity: 0; }
+}
+
+@keyframes glitchBlue {
+  0%, 68%, 100% { opacity: 0; clip-path: inset(100% 0 0 0); transform: translate(0); }
+  69% { opacity: .8; clip-path: inset(63% 0 14% 0); transform: translate(5px, -1px); }
+  70% { opacity: .6; clip-path: inset(16% 0 61% 0); transform: translate(-4px, 1px); }
+  71% { opacity: .85; clip-path: inset(42% 0 39% 0); transform: translate(3px, 0); }
+  72% { opacity: 0; }
+}
+
+.error-word {
+  position: absolute;
+  left: 50%;
+  top: 492px;
+  transform: translateX(-50%);
+  font-family: "Bitcount Grid Single", "Courier New", monospace;
+  font-size: 48px;
+  line-height: normal;
+  letter-spacing: 5.28px;
+  color: #ef0000;
+  white-space: nowrap;
+}
+
+.presence {
+  height: 18px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: "Bitcount Grid Single", "Courier New", monospace;
+  font-size: 16px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.frame-1 > .presence {
+  position: absolute;
+  left: 26px;
+  top: 979px;
+  width: 660px;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #00e34a;
+  flex: 0 0 18px;
+  animation: slowBlink 2.8s ease-in-out infinite;
+}
+
+@keyframes slowBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .25; }
+}
+
+.refresh-counter {
+  position: absolute;
+  left: 50%;
+  top: 673px;
+  transform: translateX(-50%);
+  width: 171px;
+  height: 13px;
+  font-family: "UkrainianCourier", "Courier New", monospace;
+  font-size: 16px;
+  line-height: normal;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.refresh-button {
+  position: absolute;
+  left: 604px;
+  top: 596px;
+  width: 232px;
+  height: 59px;
+  border: 1px solid #b33f00;
+  border-radius: 10px;
+  background: transparent;
+  color: #b33f00;
+  font-family: "Bitcount Grid Single", "Courier New", monospace;
+  font-size: 20px;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.refresh-button:hover { background: rgba(179, 63, 0, .05); }
+
+/* FRAME 2 — keep the Figma composition as separate layers so the requested motion
+   can affect only the decorative elements. */
+.frame-2 {
+  position: relative;
+  height: 1910px;
+  background: #151515;
+  overflow: hidden;
+}
+
+.frame-2 .f2-text,
+.frame-2 .f2-title,
+.frame-2 .f2-img,
+.frame-2 .f2-center-image {
+  position: absolute;
+}
+
+.f2-text {
+  font-family: "UkrainianCourier", "Courier New", monospace;
+  color: #fff;
+  text-align: center;
+  word-break: break-word;
+}
+
+.intro-copy {
+  left: 334px;
+  top: 512px;
+  width: 772px;
+  height: 260px;
+  font-size: 30px;
+  line-height: normal;
+}
+
+.intro-copy p { margin: 0; }
+
+.f2-title {
+  left: 50%;
+  top: 357px;
+  transform: translateX(-50%);
+  width: 1135px;
+  height: 256px;
+  margin: 0;
+  font-family: "UkrainianFuturis", "Courier New", monospace;
+  font-size: 118px;
+  line-height: normal;
+  text-align: center;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.f2-img-8 {
+  left: 29px;
+  top: 688px;
+  width: 288px;
+  height: 301.5px;
+  background: url("https://www.figma.com/api/mcp/asset/ba088fa8-d3af-4770-888f-f56408ff74ed.png") center / cover no-repeat;
+  mix-blend-mode: lighten;
+  opacity: .02;
+}
+
+.f2-img-12 {
+  left: 1147px;
+  top: 1539px;
+  width: 234px;
+  height: 245px;
+  background: url("https://www.figma.com/api/mcp/asset/ba088fa8-d3af-4770-888f-f56408ff74ed.png") center / cover no-repeat;
+  mix-blend-mode: lighten;
+  opacity: .02;
+}
+
+/* === TARGETED ANIMATIONS ===
+   The two eye graphics remain visible and never rotate.
+   The eyes only move vertically in response to page scrolling (JS changes top).
+   Only the lower snake rotates continuously clockwise.
+*/
+.f2-snake {
+  position: absolute;
+  background: url("https://www.figma.com/api/mcp/asset/ab6b452a-9d60-437f-bf2e-5f9676bd5e75.png") center / 100% 100% no-repeat;
+  mix-blend-mode: lighten;
+  opacity: .08;
+  transform-origin: 50% 50%;
+}
+
+/* Top snake: visible, but completely static. */
+.f2-snake-top {
+  left: 1106px;
+  top: -62px;
+  width: 392px;
+  height: 419px;
+  transform: rotate(180deg) scaleY(-1);
+  animation: none !important;
+}
+
+/* Lower snake: the ONLY snake that rotates. Continuous clockwise rotation. */
+.f2-snake-bottom {
+  left: -45px;
+  top: 1622px;
+  width: 362.083px;
+  height: 374.684px;
+  background-size: 283.095px 302.594px;
+  background-position: center;
+  transform-origin: 50% 50%;
+  animation: snakeBottomClockwise 4s linear infinite !important;
+  will-change: transform;
+}
+
+@keyframes snakeBottomClockwise {
+  from { transform: rotate(-17.81deg) scaleY(-1); }
+  to   { transform: rotate(342.19deg) scaleY(-1); }
+}
+
+/* Restore the two eye graphics. They do NOT rotate. */
+.f2-eye {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  will-change: top;
+  --scroll-y: 0px;
+  animation: none !important;
+  transform: none !important;
+  rotate: 0deg !important;
+}
+
+/* Eye marked by the yellow arrow in the user's screenshot. */
+.f2-eye-right {
+  left: 1104px;
+  top: 673px;
+  width: 197.567px;
+  height: 197px;
+  background-image: url("https://www.figma.com/api/mcp/asset/35d2aa2f-283f-414b-bf71-7d317dac590e.png");
+}
+
+/* The other eye remains visible and gets the same scroll-bounce behavior. */
+.f2-eye-left {
+  left: -88px;
+  top: -42px;
+  width: 316px;
+  height: 324px;
+  background-image: url("https://www.figma.com/api/mcp/asset/15db3111-0455-4402-9ca5-010a7fd24035.png");
+}
+
+.loop-copy {
+  left: 484px;
+  top: 1180px;
+  width: 472px;
+  height: 425px;
+  font-size: 32px;
+  line-height: normal;
+}
+
+.loop-copy p { margin: 0; }
+
+.f2-center-image {
+  left: 50%;
+  top: calc(50% + 402px);
+  width: 854px;
+  height: 854px;
+  transform: translate(-50%, -50%);
+  background: url("https://www.figma.com/api/mcp/asset/6b9a1103-1a0c-425d-99b9-3f8fbfcf8535.png") center / cover no-repeat;
+  mix-blend-mode: multiply;
+  opacity: .36;
+}
+
+/* Global presence/chat stay available on both frames. */
+.presence-overlay {
+  position: fixed;
+  left: 26px;
+  bottom: 26px;
+  z-index: 30;
+  width: 660px;
+}
+
+.chat-wrap {
+  position: fixed;
+  right: 24px;
+  bottom: 0;
+  width: 389px;
+  z-index: 40;
+}
+
+.chat-button {
+  width: 389px;
+  height: 56px;
+  border: 0;
+  background: #1d1d1d;
+  color: #fff;
+  font-family: "Bitcount Grid Single", "Courier New", monospace;
+  font-size: 16px;
+  cursor: default;
+}
+
+.chat-panel {
+  position: absolute;
+  left: 0;
+  bottom: 66px;
+  width: 389px;
+  height: 420px;
+  background: #1d1d1d;
+  border: 1px solid #303030;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  transform: translateY(calc(100% + 24px));
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 650ms cubic-bezier(.22,1,.36,1), opacity 350ms ease, visibility 0s linear 650ms;
+}
+
+/* Hover over the chat area makes the panel slide up. */
+.chat-wrap:hover .chat-panel,
+.chat-wrap:focus-within .chat-panel {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform 650ms cubic-bezier(.22,1,.36,1), opacity 350ms ease, visibility 0s linear 0s;
+}
+
+.chat-header {
+  height: 56px;
+  flex: 0 0 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  border-bottom: 1px solid #303030;
+  font-family: "Bitcount Grid Single", "Courier New", monospace;
+}
+
+.chat-header button {
+  background: none;
+  border: 0;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  font-family: "UkrainianCourier", "Courier New", monospace;
+  font-size: 14px;
+}
+
+.message {
+  padding: 8px 0;
+  border-bottom: 1px solid #282828;
+  word-break: break-word;
+}
+
+.chat-form {
+  display: flex;
+  height: 52px;
+  border-top: 1px solid #303030;
+}
+
+.chat-form input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  padding: 0 12px;
+  background: #151515;
+  color: #fff;
+  font-family: inherit;
+}
+
+.chat-form button {
+  width: 52px;
+  border: 0;
+  background: #b33f00;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .page { width: 100vw; }
+  .frame-1 { height: 100vh; min-height: 700px; }
+  .frame-2 { width: 100vw; height: calc(100vw * 1910 / 1440); min-height: 100vh; background-size: 100% 100%; transform-origin: top left; }
+  .error-code { top: 25vh; width: 100%; font-size: clamp(80px, 18vw, 150px); letter-spacing: clamp(12px, 4vw, 36px); }
+  .error-word { top: calc(25vh + 175px); font-size: clamp(32px, 7vw, 48px); }
+  .refresh-button { left: 50%; top: 60vh; transform: translateX(-50%); }
+  .refresh-counter { top: calc(60vh + 76px); }
+  .frame-1 > .presence { display: none; }
+  .presence-overlay { left: 26px; bottom: 150px; width: calc(100vw - 52px); font-size: 13px; white-space: normal; }
+  .chat-wrap { left: 26px; right: 26px; width: auto; }
+  .chat-button, .chat-panel { width: 100%; }
+}

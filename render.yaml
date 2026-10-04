@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: 504-error-site
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
