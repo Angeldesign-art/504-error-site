@@ -432,3 +432,46 @@ background-size:100% 100%; will-change:transform; animation:none;}
 .frame-2 .f2-eye {z-index:1;will-change:transform;}
 .frame-2 .f2-snake-top,.frame-2 .f2-snake-bottom-anchor {z-index:2;}
 .frame-2 .f2-img {z-index:1;}
+
+/* Text components: original Figma 395px columns, UkrainianCourier Regular 32px. */
+.frame-2 .figma-variants {
+  position:absolute;
+  display:block;
+  box-sizing:border-box;
+  width:395px;
+  height:151px;
+  color:#fff;
+  font-family:"UkrainianCourier","Courier New",monospace;
+  font-size:32px;
+  font-style:normal;
+  font-weight:400;
+  line-height:normal;
+  letter-spacing:normal;
+  word-break:break-word;
+  white-space:normal;
+  overflow:visible;
+  transform:none;
+  opacity:1;
+  background:transparent;
+  mix-blend-mode:normal;
+}
+.frame-2 .variants-left {left:305px;top:1344px;text-align:right;}
+.frame-2 .variants-right {left:740px;top:1339px;text-align:center;}
+.frame-2 .variant-text {
+  position:relative;
+  inset:auto;
+  display:block;
+  width:100%;
+  height:auto;
+  margin:0;
+  padding:0;
+  font:inherit;
+  line-height:normal;
+  color:inherit;
+  text-align:inherit;
+  text-wrap:balance;
+  transform:translateY(0);
+  opacity:1;
+  transition:opacity .22s ease,transform .32s ease;
+}
+.frame-2 .variant-text.changing {opacity:0;transform:translateY(-20px);}
