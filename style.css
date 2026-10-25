@@ -500,7 +500,7 @@ background-size:100% 100%; will-change:transform; animation:none;}
   height:600px;
   z-index:2;
   pointer-events:none;
-  background:url("https://www.figma.com/api/mcp/asset/b3f109ef-1927-4df8-be12-ad705ef7e4c7.png") center / contain no-repeat;
+  background:url("./istockphoto-2277450312-1024x1024-Photoroom.png") center / contain no-repeat;
   opacity:.22;
   mix-blend-mode:lighten;
   transform-origin:50% 50%;
