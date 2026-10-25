@@ -87,30 +87,62 @@ const leftText = document.querySelector("#variantsLeft .variant-text");
 const rightText = document.querySelector("#variantsRight .variant-text");
 const eyes = [...document.querySelectorAll(".f2-eye")];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-let lastIndex = -1;
+// The text remains in its initial Figma state while the visitor scrolls
+// through the page. Only wheel gestures at the very bottom change variants.
+let variantIndex = 0;
+let lastVariantChange = 0;
+let wheelAccumulated = 0;
 function applyVariant(node, value) {
  if (node.innerHTML === value) return;
- if (reducedMotion.matches) {node.innerHTML=value;return;}
+ if (reducedMotion.matches) { node.innerHTML = value; return; }
  node.classList.add("changing");
- window.setTimeout(()=>{node.innerHTML=value;node.classList.remove("changing");},220);
+ window.setTimeout(() => {
+   node.innerHTML = value;
+   node.classList.remove("changing");
+ }, 220);
 }
-let pending=false;
+function showVariant(index) {
+ variantIndex = Math.max(0, Math.min(2, index));
+ applyVariant(leftText, leftVariants[variantIndex]);
+ applyVariant(rightText, rightVariants[variantIndex]);
+}
+let pending = false;
 function updateScroll() {
- pending=false;
+ pending = false;
  if (!showFrame2) return;
- const scroll=Math.max(0,window.scrollY);
- // Different vertical speeds, never rotation; use local page scroll only.
- eyes.forEach((eye,i)=>{eye.style.transform=`translate3d(0,${(scroll*(i===0?-.22:.17)).toFixed(1)}px,0)`;});
- const index=Math.min(2,Math.floor(scroll/310));
- if(index!==lastIndex) {
-  lastIndex=index;
-  applyVariant(leftText,leftVariants[index]);
-  applyVariant(rightText,rightVariants[index]);
- }
+ const scroll = Math.max(0, window.scrollY);
+ // Parallax is independent of text animation.
+ eyes.forEach((eye,i) => {
+   eye.style.transform = `translate3d(0,${(scroll*(i===0?-.22:.17)).toFixed(1)}px,0)`;
+ });
 }
-function scheduleScroll(){if(!pending){pending=true;requestAnimationFrame(updateScroll);}}
+function scheduleScroll() {
+ if (!pending) { pending=true; requestAnimationFrame(updateScroll); }
+}
 window.addEventListener("scroll",scheduleScroll,{passive:true});
 window.addEventListener("resize",scheduleScroll);
+
+// At the page bottom, use additional wheel gestures to step through text.
+// Upward scrolling restores earlier text before leaving the bottom.
+window.addEventListener("wheel", (event) => {
+ if (!showFrame2 || event.ctrlKey) return;
+ const bottom = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+ const atBottom = window.scrollY >= bottom - 3;
+ if (!atBottom) { wheelAccumulated = 0; return; }
+ const direction = Math.sign(event.deltaY);
+ const canAdvance = direction > 0 && variantIndex < 2;
+ const canRewind = direction < 0 && variantIndex > 0;
+ if (!canAdvance && !canRewind) return;
+ event.preventDefault();
+ const now = performance.now();
+ if (now - lastVariantChange < 420) return;
+ wheelAccumulated += event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1);
+ if (Math.abs(wheelAccumulated) < 55) return;
+ showVariant(variantIndex + Math.sign(wheelAccumulated));
+ wheelAccumulated = 0;
+ lastVariantChange = now;
+}, {passive:false});
+
 scheduleScroll();
 
 const protocol = location.protocol === "https:" ? "wss:" : "ws:";
