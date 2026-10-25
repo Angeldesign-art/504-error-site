@@ -188,9 +188,7 @@ body { overflow-x: hidden; }
 .frame-2 .f2-title,
 .frame-2 .f2-img,
 .frame-2 .f2-center-image {
- position:absolute;left:293px;top:930px;width:854px;height:854px;
- transform:none;background:url("https://www.figma.com/api/mcp/asset/bf61c3bb-3825-4381-b6d9-6568881a1016.png") center / contain no-repeat;
- mix-blend-mode:multiply;opacity:.36;pointer-events:none;z-index:0;
+  position: absolute;
 }
 
 .intro-copy {
@@ -475,3 +473,20 @@ background-size:100% 100%; will-change:transform; animation:none;}
   transition:opacity .22s ease,transform .32s ease;
 }
 .frame-2 .variant-text.changing {opacity:0;transform:translateY(-20px);}
+
+/* Exact Figma header and intro geometry (Desktop-2). */
+.frame-2 .f2-title {
+  left:152px;top:357px;width:1135px;height:256px;
+  margin:0;transform:none;opacity:1;pointer-events:auto;
+  background:none;mix-blend-mode:normal;z-index:3;
+  font-family:"UkrainianFuturis","Arial",sans-serif;
+  font-size:118px;font-weight:400;line-height:normal;text-align:center;
+}
+.frame-2 .intro-copy {
+  left:334px;top:512px;width:772px;height:260px;
+  transform:none;opacity:1;pointer-events:auto;
+  background:none;mix-blend-mode:normal;z-index:3;
+  font-family:"UkrainianCourier","Courier New",monospace;
+  font-size:30px;font-weight:400;line-height:normal;text-align:center;
+}
+.frame-2 .intro-copy p {margin:0;}
