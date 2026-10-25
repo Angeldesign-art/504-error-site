@@ -187,9 +187,7 @@ body { overflow-x: hidden; }
 .frame-2 .f2-text,
 .frame-2 .f2-title,
 .frame-2 .f2-img,
-.frame-2 .f2-center-image {
-  position: absolute;
-}
+.frame-2 .f2-center-image {left:50%;top:calc(50% + 402px);width:854px;height:854px;transform:translate(-50%,-50%);background:url("https://www.figma.com/api/mcp/asset/9f7cc446-0d81-47eb-88c4-b060cf850cb9.png") center/cover no-repeat;mix-blend-mode:multiply;opacity:.36;}
 
 .f2-text {
   font-family: "UkrainianCourier", "Courier New", monospace;
@@ -224,98 +222,44 @@ body { overflow-x: hidden; }
   white-space: nowrap;
 }
 
-.f2-img-8 {
-  left: 29px;
-  top: 688px;
-  width: 288px;
-  height: 301.5px;
-  background: url("https://www.figma.com/api/mcp/asset/ba088fa8-d3af-4770-888f-f56408ff74ed.png") center / cover no-repeat;
-  mix-blend-mode: lighten;
-  opacity: .02;
-}
+.f2-img-8 {left:29px;top:688px;width:288px;height:301.5px;background:url("https://www.figma.com/api/mcp/asset/6ceccce6-aa68-453e-b3aa-86ee8d37a9f8.png") center/cover no-repeat;mix-blend-mode:lighten;opacity:.34;}
 
-.f2-img-12 {
-  left: 1147px;
-  top: 1539px;
-  width: 234px;
-  height: 245px;
-  background: url("https://www.figma.com/api/mcp/asset/ba088fa8-d3af-4770-888f-f56408ff74ed.png") center / cover no-repeat;
-  mix-blend-mode: lighten;
-  opacity: .02;
-}
+.f2-img-12 {left:1147px;top:1539px;width:234px;height:245px;background:url("https://www.figma.com/api/mcp/asset/6ceccce6-aa68-453e-b3aa-86ee8d37a9f8.png") center/cover no-repeat;mix-blend-mode:lighten;opacity:.41;}
 
 /* === TARGETED ANIMATIONS ===
    The two eye graphics remain visible and never rotate.
    The eyes only move vertically in response to page scrolling (JS changes top).
    Only the lower snake rotates continuously clockwise.
 */
-.f2-snake {
-  position: absolute;
-  background: url("https://www.figma.com/api/mcp/asset/ab6b452a-9d60-437f-bf2e-5f9676bd5e75.png") center / 100% 100% no-repeat;
-  mix-blend-mode: lighten;
-  opacity: .08;
-  transform-origin: 50% 50%;
-}
+.f2-snake {position:absolute;background:url("https://www.figma.com/api/mcp/asset/deb39528-f91e-4bb0-8b85-2b9af08151b2.png") center/100% 100% no-repeat;mix-blend-mode:lighten;transform-origin:center;}
 
 /* Top snake: visible, but completely static. */
-.f2-snake-top {
-  left: 1106px;
-  top: -62px;
-  width: 392px;
-  height: 419px;
-  transform: rotate(180deg) scaleY(-1);
-  animation: none !important;
-}
+.f2-snake-top {left:1106px;top:-62px;width:392px;height:419px;opacity:.36;transform:rotate(180deg) scaleY(-1);animation:none;}
 
 /* Lower snake: the ONLY snake that rotates. Continuous clockwise rotation. */
 .f2-snake-bottom {
-  left: -45px;
-  top: 1622px;
-  width: 362.083px;
-  height: 374.684px;
-  background-size: 283.095px 302.594px;
-  background-position: center;
-  transform: rotate(-17.81deg) scaleY(-1);
-  transform-origin: 50% 50%;
-  rotate: 0deg;
-  animation: snakeBottomClockwise 4s linear infinite !important;
-  will-change: rotate;
+  position:absolute; inset:0; width:100%; height:100%;
+  background-size:283.095px 302.594px; background-position:center;
+  opacity:.38; transform-origin:center center;
+  animation:snakeSpin 16s linear infinite;
 }
+.f2-snake-bottom-anchor {
+  position:absolute; left:-45px; top:1622px; width:362.083px; height:374.684px;
+  transform:rotate(-17.81deg); transform-origin:center;
+}
+@keyframes snakeSpin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
 
-@keyframes snakeBottomClockwise {
-  from { rotate: 0deg; }
-  to   { rotate: 360deg; }
-}
+
 
 /* Restore the two eye graphics. They do NOT rotate. */
-.f2-eye {
-  position: absolute;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  will-change: top;
-  animation: none !important;
-  transform: none !important;
-  rotate: none !important;
-}
+.f2-eye {position:absolute; background-repeat:no-repeat; background-position:center;
+background-size:100% 100%; will-change:transform; animation:none;}
 
 /* Eye marked by the yellow arrow in the user's screenshot. */
-.f2-eye-right {
-  left: 1104px;
-  top: 673px;
-  width: 197.567px;
-  height: 197px;
-  background-image: url("https://www.figma.com/api/mcp/asset/35d2aa2f-283f-414b-bf71-7d317dac590e.png");
-}
+.f2-eye-right {left:1104px;top:673px;width:197.567px;height:197px;background-image:url("https://www.figma.com/api/mcp/asset/1e86e12f-c844-473c-9833-665420f7b284.png");}
 
 /* The other eye remains visible and gets the same scroll-bounce behavior. */
-.f2-eye-left {
-  left: -88px;
-  top: -42px;
-  width: 316px;
-  height: 324px;
-  background-image: url("https://www.figma.com/api/mcp/asset/15db3111-0455-4402-9ca5-010a7fd24035.png");
-}
+.f2-eye-left {left:-88px;top:-42px;width:316px;height:324px;background-image:url("https://www.figma.com/api/mcp/asset/9fcd2170-e086-460a-a926-3803866659e7.png");}
 
 .loop-copy {
   left: 484px;
@@ -490,28 +434,12 @@ body { overflow-x: hidden; }
   .loop-track, .f2-eye { will-change: auto; }
 }
 
-/* Updated Figma text variants: three states in each component. */
-.frame-2 .loop-heading {
-  position:absolute; top:1092px; left:484px; width:472px;
-  margin:0; color:white; text-align:center;
-  font:48px/1.1 "UkrainianCourier","Courier New",monospace;
-}
-.frame-2 .narrative {
-  position:absolute; width:395px; height:190px; overflow:hidden;
-  font:32px/1.12 "UkrainianCourier","Courier New",monospace;
-  z-index:5;
-}
-.frame-2 .narrative-first { top:1185px; left:520px; text-align:right; }
-.frame-2 .narrative-second { top:1495px; left:522px; text-align:center; }
-.narrative-line {
-  position:absolute; inset:0; margin:0;
-  opacity:0; transform:translate3d(0,36px,0);
-  transition:transform .5s cubic-bezier(.2,.75,.2,1),opacity .4s ease;
-  pointer-events:none;
-}
-.narrative-line.is-active { opacity:1; transform:translate3d(0,0,0); }
-.frame-2 .loop-copy { display:none; }
-.frame-2 .f2-eye { will-change:transform; animation:none!important; rotate:none!important; }
-@media (prefers-reduced-motion: reduce) {
- .narrative-line { transition:none; }
-}
+
+/* Clean Figma rebuild: columns match the 169:487 and 169:495 component positions. */
+.frame-2 .loop-heading {position:absolute;top:1092px;left:484px;width:472px;margin:0;text-align:center;font:48px/1.1 UkrainianCourier,"Courier New",monospace;color:white;}
+.figma-variants {position:absolute;top:1344px;width:395px;min-height:151px;color:white;z-index:3;font:32px/1.16 UkrainianCourier,"Courier New",monospace;}
+.variants-left {left:305px;text-align:right;}
+.variants-right {left:740px;text-align:center;}
+.variant-text {margin:0;transition:opacity .22s ease,transform .32s ease;opacity:1;transform:translateY(0);}
+.variant-text.changing {opacity:0;transform:translateY(-20px);}
+@media(prefers-reduced-motion:reduce){.variant-text{transition:none}.f2-snake-bottom{animation:none}}
