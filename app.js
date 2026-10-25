@@ -71,45 +71,46 @@ chatPanel.addEventListener("mouseleave", () => {
 chatClose.addEventListener("click", (event) => event.preventDefault());
 
 
-// Scroll-driven Figma variants. Two tracks advance in opposite sequences.
-const eyes = [...frame2.querySelectorAll(".f2-eye")];
-const firstLines = [...document.querySelectorAll("#narrativeFirst .narrative-line")];
-const secondLines = [...document.querySelectorAll("#narrativeSecond .narrative-line")];
-let motionScroll = window.scrollY;
-let scrollTarget = window.scrollY;
-let motionPending = false;
-const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-function setNarrative(lines, phase, inverted) {
-  const idx = Math.min(2, Math.floor(phase * 3));
-  lines.forEach((line, i) => {
-    const active = i === idx;
-    line.classList.toggle("is-active", active);
-    line.style.transform = `translate3d(0,${active ? 0 : (i < idx ? -36 : 36)}px,0)`;
-    line.style.opacity = active ? "1" : "0";
-  });
+// Scroll interaction is confined to the existing Figma component variants.
+const leftVariants = [
+ "Создатель изменил ресурс — и изменил поведение тысяч людей.",
+ "Люди начали обновлять страницу с надеждой на изменение, жаловаться на ошибку.",
+ "Только благодаря коллективным следам создатель узнал об ошибке и может исправить."
+];
+const rightVariants = [
+ "Ничего не изменилось.<br>Или тебе только кажется?<br>Попробуй ещё раз.",
+ "Система не требует от тебя ничего.<br>Она просто оставляет возможность повторить действие.",
+ "Ты можешь уйти.<br>Можешь закрыть вкладку.<br>Можешь попробовать ещё раз."
+];
+const leftText = document.querySelector("#variantsLeft .variant-text");
+const rightText = document.querySelector("#variantsRight .variant-text");
+const eyes = [...document.querySelectorAll(".f2-eye")];
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let lastIndex = -1;
+function applyVariant(node, value) {
+ if (node.innerHTML === value) return;
+ if (reducedMotion.matches) {node.innerHTML=value;return;}
+ node.classList.add("changing");
+ window.setTimeout(()=>{node.innerHTML=value;node.classList.remove("changing");},220);
 }
-function updateMotion() {
-  motionPending = false;
-  motionScroll += (scrollTarget - motionScroll) * (reducedMotion.matches ? 1 : .16);
-  if (showFrame2) {
-    const top = frame2.getBoundingClientRect().top + window.scrollY;
-    const y = Math.max(0, motionScroll - top);
-    eyes.forEach((eye, i) => {
-      eye.style.transform = `translate3d(0,${(y * (i ? -.095 : .16)).toFixed(2)}px,0)`;
-    });
-    const firstProgress = Math.max(0, Math.min(.9999, (y - 320) / 900));
-    const secondProgress = Math.max(0, Math.min(.9999, (y - 670) / 850));
-    setNarrative(firstLines, firstProgress, false);
-    setNarrative(secondLines, secondProgress, true);
-  }
-  if (Math.abs(scrollTarget - motionScroll) > .25) scheduleMotion();
+let pending=false;
+function updateScroll() {
+ pending=false;
+ if (!showFrame2) return;
+ const scroll=Math.max(0,window.scrollY);
+ // Different vertical speeds, never rotation; use local page scroll only.
+ eyes.forEach((eye,i)=>{eye.style.transform=`translate3d(0,${(scroll*(i===0?-.12:.075)).toFixed(1)}px,0)`;});
+ const index=Math.min(2,Math.floor(scroll/310));
+ if(index!==lastIndex) {
+  lastIndex=index;
+  applyVariant(leftText,leftVariants[index]);
+  applyVariant(rightText,rightVariants[index]);
+ }
 }
-function scheduleMotion() {
-  if (!motionPending) { motionPending = true; requestAnimationFrame(updateMotion); }
-}
-window.addEventListener("scroll", () => { scrollTarget = window.scrollY; scheduleMotion(); }, {passive:true});
-window.addEventListener("resize", scheduleMotion);
-scheduleMotion();
+function scheduleScroll(){if(!pending){pending=true;requestAnimationFrame(updateScroll);}}
+window.addEventListener("scroll",scheduleScroll,{passive:true});
+window.addEventListener("resize",scheduleScroll);
+scheduleScroll();
 
 const protocol = location.protocol === "https:" ? "wss:" : "ws:";
 const ws = new WebSocket(`${protocol}//${location.host}`);
