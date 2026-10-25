@@ -31,7 +31,7 @@ if (isReload) {
 }
 refreshCountEl.textContent = count;
 
-// First visit = Frame 1. Every actual reload has a 30% chance to land on Frame 2.
+// First visit = Frame 1. Every actual reload has a 20% chance to land on Frame 2.
 const showFrame2 = isReload && Math.random() < FRAME2_CHANCE;
 frame1.classList.toggle("active", !showFrame2);
 frame2.classList.toggle("active", showFrame2);
@@ -71,41 +71,48 @@ chatPanel.addEventListener("mouseleave", () => {
 chatClose.addEventListener("click", (event) => event.preventDefault());
 
 
-// === REBUILT EYE MOTION ===
-// No rotation is used anywhere for the eye artwork.
-// Scrolling only gives the eyes a small vertical bounce.
-const frame2Motion = document.getElementById("frame2");
-const eyes = frame2Motion ? frame2Motion.querySelectorAll(".f2-eye") : [];
-let eyeOffset = 0;
-let eyeVelocity = 0;
-let previousScrollY = window.scrollY;
+// Scroll-driven parallax: eyes translate at different speeds, never rotate.
+// The second text panel advances upward as the page scrolls down.
+const eyes = [...frame2.querySelectorAll(".f2-eye")];
+const loopPanel = frame2.querySelector(".loop-copy");
+const loopTrack = document.getElementById("loopTrack");
+let smoothScroll = window.scrollY;
+let targetScroll = window.scrollY;
+let animationRunning = false;
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-function handleEyeScroll() {
-  const delta = window.scrollY - previousScrollY;
-  previousScrollY = window.scrollY;
-  if (!eyes.length || delta === 0) return;
-  eyeVelocity += delta * 0.11;
-  eyeVelocity = Math.max(-4, Math.min(4, eyeVelocity));
-}
-
-function animateEyeBounce() {
-  eyeVelocity *= 0.82;
-  eyeOffset += eyeVelocity;
-  eyeOffset *= 0.90;
-  eyeOffset = Math.max(-10, Math.min(10, eyeOffset));
-  for (const eye of eyes) {
-    if (!eye.dataset.baseTop) {
-      eye.dataset.baseTop = getComputedStyle(eye).top;
+function updateMotion() {
+  animationRunning = false;
+  smoothScroll += (targetScroll - smoothScroll) * (reducedMotion.matches ? 1 : 0.12);
+  const frameTop = frame2.getBoundingClientRect().top + window.scrollY;
+  const relativeScroll = Math.max(0, smoothScroll - frameTop);
+  if (showFrame2) {
+    eyes.forEach((eye, index) => {
+      const offset = relativeScroll * (index === 0 ? 0.14 : -0.09);
+      eye.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
+    });
+    if (loopPanel && loopTrack) {
+      const distance = Math.max(0, loopTrack.scrollHeight - loopPanel.clientHeight);
+      const start = 650;
+      const range = 850;
+      const progress = Math.max(0, Math.min(1, (relativeScroll - start) / range));
+      loopTrack.style.transform = `translate3d(0, ${(-distance * progress).toFixed(2)}px, 0)`;
     }
-    eye.style.top = `calc(${eye.dataset.baseTop} + ${eyeOffset.toFixed(2)}px)`;
-    eye.style.transform = "none";
-    eye.style.rotate = "0deg";
   }
-  requestAnimationFrame(animateEyeBounce);
+  if (Math.abs(targetScroll - smoothScroll) > 0.2) scheduleMotion();
 }
-
-window.addEventListener("scroll", handleEyeScroll, { passive: true });
-requestAnimationFrame(animateEyeBounce);
+function scheduleMotion() {
+  if (!animationRunning) {
+    animationRunning = true;
+    requestAnimationFrame(updateMotion);
+  }
+}
+window.addEventListener("scroll", () => {
+  targetScroll = window.scrollY;
+  scheduleMotion();
+}, { passive: true });
+window.addEventListener("resize", scheduleMotion);
+scheduleMotion();
 
 const protocol = location.protocol === "https:" ? "wss:" : "ws:";
 const ws = new WebSocket(`${protocol}//${location.host}`);
