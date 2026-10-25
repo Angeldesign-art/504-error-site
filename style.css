@@ -466,3 +466,26 @@ body { overflow-x: hidden; }
   .chat-wrap { left: 26px; right: 26px; width: auto; }
   .chat-button, .chat-panel { width: 100%; }
 }
+
+/* Scroll narrative: reverse reading order, first visible line is "Ничего не изменилось". */
+.frame-2 .loop-copy {
+  top: 1080px;
+  left: 484px;
+  width: 472px;
+  height: 430px;
+  overflow: hidden;
+  z-index: 4;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 9%, black 91%, transparent 100%);
+}
+.loop-track { position: relative; transform: translate3d(0,0,0); will-change: transform; }
+.loop-track p { margin: 0 0 80px; line-height: 1.18; }
+.loop-track p:first-child { margin-top: 25px; }
+.frame-2 .f2-eye {
+  will-change: transform;
+  rotate: none !important;
+  animation: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .f2-snake-bottom { animation-duration: 20s !important; }
+  .loop-track, .f2-eye { will-change: auto; }
+}
