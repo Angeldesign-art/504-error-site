@@ -71,46 +71,43 @@ chatPanel.addEventListener("mouseleave", () => {
 chatClose.addEventListener("click", (event) => event.preventDefault());
 
 
-// Scroll-driven parallax: eyes translate at different speeds, never rotate.
-// The second text panel advances upward as the page scrolls down.
+// Scroll-driven Figma variants. Two tracks advance in opposite sequences.
 const eyes = [...frame2.querySelectorAll(".f2-eye")];
-const loopPanel = frame2.querySelector(".loop-copy");
-const loopTrack = document.getElementById("loopTrack");
-let smoothScroll = window.scrollY;
-let targetScroll = window.scrollY;
-let animationRunning = false;
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
+const firstLines = [...document.querySelectorAll("#narrativeFirst .narrative-line")];
+const secondLines = [...document.querySelectorAll("#narrativeSecond .narrative-line")];
+let motionScroll = window.scrollY;
+let scrollTarget = window.scrollY;
+let motionPending = false;
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+function setNarrative(lines, phase, inverted) {
+  const idx = Math.min(2, Math.floor(phase * 3));
+  lines.forEach((line, i) => {
+    const active = i === idx;
+    line.classList.toggle("is-active", active);
+    line.style.transform = `translate3d(0,${active ? 0 : (i < idx ? -36 : 36)}px,0)`;
+    line.style.opacity = active ? "1" : "0";
+  });
+}
 function updateMotion() {
-  animationRunning = false;
-  smoothScroll += (targetScroll - smoothScroll) * (reducedMotion.matches ? 1 : 0.12);
-  const frameTop = frame2.getBoundingClientRect().top + window.scrollY;
-  const relativeScroll = Math.max(0, smoothScroll - frameTop);
+  motionPending = false;
+  motionScroll += (scrollTarget - motionScroll) * (reducedMotion.matches ? 1 : .16);
   if (showFrame2) {
-    eyes.forEach((eye, index) => {
-      const offset = relativeScroll * (index === 0 ? 0.14 : -0.09);
-      eye.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
+    const top = frame2.getBoundingClientRect().top + window.scrollY;
+    const y = Math.max(0, motionScroll - top);
+    eyes.forEach((eye, i) => {
+      eye.style.transform = `translate3d(0,${(y * (i ? -.095 : .16)).toFixed(2)}px,0)`;
     });
-    if (loopPanel && loopTrack) {
-      const distance = Math.max(0, loopTrack.scrollHeight - loopPanel.clientHeight);
-      const start = 650;
-      const range = 850;
-      const progress = Math.max(0, Math.min(1, (relativeScroll - start) / range));
-      loopTrack.style.transform = `translate3d(0, ${(-distance * progress).toFixed(2)}px, 0)`;
-    }
+    const firstProgress = Math.max(0, Math.min(.9999, (y - 320) / 900));
+    const secondProgress = Math.max(0, Math.min(.9999, (y - 670) / 850));
+    setNarrative(firstLines, firstProgress, false);
+    setNarrative(secondLines, secondProgress, true);
   }
-  if (Math.abs(targetScroll - smoothScroll) > 0.2) scheduleMotion();
+  if (Math.abs(scrollTarget - motionScroll) > .25) scheduleMotion();
 }
 function scheduleMotion() {
-  if (!animationRunning) {
-    animationRunning = true;
-    requestAnimationFrame(updateMotion);
-  }
+  if (!motionPending) { motionPending = true; requestAnimationFrame(updateMotion); }
 }
-window.addEventListener("scroll", () => {
-  targetScroll = window.scrollY;
-  scheduleMotion();
-}, { passive: true });
+window.addEventListener("scroll", () => { scrollTarget = window.scrollY; scheduleMotion(); }, {passive:true});
 window.addEventListener("resize", scheduleMotion);
 scheduleMotion();
 
