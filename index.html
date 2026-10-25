@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>504 error</title>
-  <link rel="stylesheet" href="/style.css?v=animation-fix-2">
+  <link rel="stylesheet" href="/style.css?v=parallax-scroll-3">
 </head>
 <body>
   <main id="frame1" class="page frame frame-1">
@@ -39,14 +39,17 @@
     <div class="f2-eye f2-eye-right" aria-hidden="true"></div>
     <div class="f2-eye f2-eye-left" aria-hidden="true"></div>
 
-    <div class="f2-text loop-copy">
-      <p>Петля</p>
-      <p>&nbsp;</p>
-      <p>Создатель изменил ресурс-и изменил поведение тысяч людей.</p>
-      <p>&nbsp;</p>
-      <p>Люди начали обновлять страницу с надеждой на изменение, жаловаться на ошибку.</p>
-      <p>&nbsp;</p>
-      <p>Только благодаря коллективным следам создатель узнал об ошибке и может исправить.</p>
+    <!-- Reverse-reading text: scrolling down reveals later lines from below. -->
+    <div class="f2-text loop-copy" aria-label="Текст о петле">
+      <div class="loop-track" id="loopTrack">
+        <p>Ничего не изменилось. Или тебе только кажется?</p>
+        <p>Ты всё ещё здесь. Ты снова читаешь. Ты снова ждёшь.</p>
+        <p>Каждое действие оставляет след. Каждое повторение становится привычкой.</p>
+        <p>Люди начали обновлять страницу в надежде на изменение.</p>
+        <p>Создатель изменил ресурс — и изменил поведение тысяч людей.</p>
+        <p>Только благодаря коллективным следам создатель узнал об ошибке и может её исправить.</p>
+        <p>Петля замкнулась.</p>
+      </div>
     </div>
 
     <div class="f2-center-image"></div>
@@ -72,6 +75,6 @@
     </section>
   </div>
 
-  <script src="/app.js?v=animation-fix-2"></script>
+  <script src="/app.js?v=parallax-scroll-3"></script>
 </body>
 </html>
