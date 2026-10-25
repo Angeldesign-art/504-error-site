@@ -100,7 +100,7 @@ function updateScroll() {
  if (!showFrame2) return;
  const scroll=Math.max(0,window.scrollY);
  // Different vertical speeds, never rotation; use local page scroll only.
- eyes.forEach((eye,i)=>{eye.style.transform=`translate3d(0,${(scroll*(i===0?-.30:.22)).toFixed(1)}px,0)`;});
+ eyes.forEach((eye,i)=>{eye.style.transform=`translate3d(0,${(scroll*(i===0?-.22:.17)).toFixed(1)}px,0)`;});
  const index=Math.min(2,Math.floor(scroll/310));
  if(index!==lastIndex) {
   lastIndex=index;
