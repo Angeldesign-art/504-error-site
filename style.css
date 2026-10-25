@@ -489,3 +489,29 @@ body { overflow-x: hidden; }
   .f2-snake-bottom { animation-duration: 20s !important; }
   .loop-track, .f2-eye { will-change: auto; }
 }
+
+/* Updated Figma text variants: three states in each component. */
+.frame-2 .loop-heading {
+  position:absolute; top:1092px; left:484px; width:472px;
+  margin:0; color:white; text-align:center;
+  font:48px/1.1 "UkrainianCourier","Courier New",monospace;
+}
+.frame-2 .narrative {
+  position:absolute; width:395px; height:190px; overflow:hidden;
+  font:32px/1.12 "UkrainianCourier","Courier New",monospace;
+  z-index:5;
+}
+.frame-2 .narrative-first { top:1185px; left:520px; text-align:right; }
+.frame-2 .narrative-second { top:1495px; left:522px; text-align:center; }
+.narrative-line {
+  position:absolute; inset:0; margin:0;
+  opacity:0; transform:translate3d(0,36px,0);
+  transition:transform .5s cubic-bezier(.2,.75,.2,1),opacity .4s ease;
+  pointer-events:none;
+}
+.narrative-line.is-active { opacity:1; transform:translate3d(0,0,0); }
+.frame-2 .loop-copy { display:none; }
+.frame-2 .f2-eye { will-change:transform; animation:none!important; rotate:none!important; }
+@media (prefers-reduced-motion: reduce) {
+ .narrative-line { transition:none; }
+}
