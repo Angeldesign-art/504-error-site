@@ -187,13 +187,10 @@ body { overflow-x: hidden; }
 .frame-2 .f2-text,
 .frame-2 .f2-title,
 .frame-2 .f2-img,
-.frame-2 .f2-center-image {left:50%;top:calc(50% + 402px);width:854px;height:854px;transform:translate(-50%,-50%);background:url("https://www.figma.com/api/mcp/asset/9f7cc446-0d81-47eb-88c4-b060cf850cb9.png") center/cover no-repeat;mix-blend-mode:multiply;opacity:.36;}
-
-.f2-text {
-  font-family: "UkrainianCourier", "Courier New", monospace;
-  color: #fff;
-  text-align: center;
-  word-break: break-word;
+.frame-2 .f2-center-image {
+ position:absolute;left:293px;top:930px;width:854px;height:854px;
+ transform:none;background:url("https://www.figma.com/api/mcp/asset/bf61c3bb-3825-4381-b6d9-6568881a1016.png") center / contain no-repeat;
+ mix-blend-mode:multiply;opacity:.36;pointer-events:none;z-index:0;
 }
 
 .intro-copy {
@@ -222,16 +219,16 @@ body { overflow-x: hidden; }
   white-space: nowrap;
 }
 
-.f2-img-8 {left:29px;top:688px;width:288px;height:301.5px;background:url("https://www.figma.com/api/mcp/asset/6ceccce6-aa68-453e-b3aa-86ee8d37a9f8.png") center/cover no-repeat;mix-blend-mode:lighten;opacity:.34;}
+.f2-img-8 {left:29px;top:688px;width:288px;height:301.5px;background:url("https://www.figma.com/api/mcp/asset/df3e86a4-f72e-414f-8bd6-0e1063e01621.png") center/contain no-repeat;mix-blend-mode:lighten;opacity:.34;}
 
-.f2-img-12 {left:1147px;top:1539px;width:234px;height:245px;background:url("https://www.figma.com/api/mcp/asset/6ceccce6-aa68-453e-b3aa-86ee8d37a9f8.png") center/cover no-repeat;mix-blend-mode:lighten;opacity:.41;}
+.f2-img-12 {left:1147px;top:1539px;width:234px;height:245px;background:url("https://www.figma.com/api/mcp/asset/df3e86a4-f72e-414f-8bd6-0e1063e01621.png") center/contain no-repeat;mix-blend-mode:lighten;opacity:.41;}
 
 /* === TARGETED ANIMATIONS ===
    The two eye graphics remain visible and never rotate.
    The eyes only move vertically in response to page scrolling (JS changes top).
    Only the lower snake rotates continuously clockwise.
 */
-.f2-snake {position:absolute;background:url("https://www.figma.com/api/mcp/asset/deb39528-f91e-4bb0-8b85-2b9af08151b2.png") center/100% 100% no-repeat;mix-blend-mode:lighten;transform-origin:center;}
+.f2-snake {position:absolute;background:url("https://www.figma.com/api/mcp/asset/b3f109ef-1927-4df8-be12-ad705ef7e4c7.png") center/contain no-repeat;mix-blend-mode:lighten;transform-origin:center;}
 
 /* Top snake: visible, but completely static. */
 .f2-snake-top {left:1106px;top:-62px;width:392px;height:419px;opacity:.36;transform:rotate(180deg) scaleY(-1);animation:none;}
@@ -256,10 +253,10 @@ body { overflow-x: hidden; }
 background-size:100% 100%; will-change:transform; animation:none;}
 
 /* Eye marked by the yellow arrow in the user's screenshot. */
-.f2-eye-right {left:1104px;top:673px;width:197.567px;height:197px;background-image:url("https://www.figma.com/api/mcp/asset/1e86e12f-c844-473c-9833-665420f7b284.png");}
+.f2-eye-right {left:1104px;top:673px;width:197.567px;height:197px;background-image:url("https://www.figma.com/api/mcp/asset/46e0d160-6a41-4320-9b3a-ec0b233f070d.png");}
 
 /* The other eye remains visible and gets the same scroll-bounce behavior. */
-.f2-eye-left {left:-88px;top:-42px;width:316px;height:324px;background-image:url("https://www.figma.com/api/mcp/asset/9fcd2170-e086-460a-a926-3803866659e7.png");}
+.f2-eye-left {left:-88px;top:-42px;width:316px;height:324px;background-image:url("https://www.figma.com/api/mcp/asset/546c68f7-680d-42bc-bcc7-30cb7952708d.png");}
 
 .loop-copy {
   left: 484px;
@@ -423,3 +420,15 @@ background-size:100% 100%; will-change:transform; animation:none;}
 .frame-2 .f2-snake-top {animation:none;opacity:.36;}
 /* Parallax layers are moved with translate3d only, leaving their Figma positions untouched. */
 .frame-2 .f2-eye {will-change:transform;transform:translate3d(0,0,0);transition:none;}
+
+/* Figma Desktop-2 original layer geometry: text remains above central art. */
+.frame-2 .f2-title {left:152px;top:357px;width:1135px;transform:none;opacity:1;background:none;mix-blend-mode:normal;}
+.frame-2 .intro-copy {left:334px;top:512px;width:772px;height:260px;transform:none;opacity:1;background:none;mix-blend-mode:normal;}
+.frame-2 .loop-heading {left:484px;top:1092px;width:472px;transform:none;opacity:1;background:none;mix-blend-mode:normal;z-index:3;}
+.frame-2 .figma-variants {z-index:4;opacity:1;background:none;mix-blend-mode:normal;}
+.frame-2 .variants-left {left:305px;top:1344px;width:395px;}
+.frame-2 .variants-right {left:740px;top:1339px;width:395px;}
+.frame-2 .f2-img,.frame-2 .f2-eye,.frame-2 .f2-snake,.frame-2 .f2-snake-bottom-anchor {pointer-events:none;}
+.frame-2 .f2-eye {z-index:1;will-change:transform;}
+.frame-2 .f2-snake-top,.frame-2 .f2-snake-bottom-anchor {z-index:2;}
+.frame-2 .f2-img {z-index:1;}
