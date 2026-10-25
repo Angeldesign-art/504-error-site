@@ -411,35 +411,15 @@ background-size:100% 100%; will-change:transform; animation:none;}
   .chat-button, .chat-panel { width: 100%; }
 }
 
-/* Scroll narrative: reverse reading order, first visible line is "Ничего не изменилось". */
-.frame-2 .loop-copy {
-  top: 1080px;
-  left: 484px;
-  width: 472px;
-  height: 430px;
-  overflow: hidden;
-  z-index: 4;
-  mask-image: linear-gradient(to bottom, transparent 0%, black 9%, black 91%, transparent 100%);
-}
-.loop-track { position: relative; transform: translate3d(0,0,0); will-change: transform; }
-.loop-track p { margin: 0 0 80px; line-height: 1.18; }
-.loop-track p:first-child { margin-top: 25px; }
-.frame-2 .f2-eye {
-  will-change: transform;
-  rotate: none !important;
-  animation: none !important;
-}
-@media (prefers-reduced-motion: reduce) {
-  .f2-snake-bottom { animation-duration: 20s !important; }
-  .loop-track, .f2-eye { will-change: auto; }
-}
 
-
-/* Clean Figma rebuild: columns match the 169:487 and 169:495 component positions. */
-.frame-2 .loop-heading {position:absolute;top:1092px;left:484px;width:472px;margin:0;text-align:center;font:48px/1.1 UkrainianCourier,"Courier New",monospace;color:white;}
-.figma-variants {position:absolute;top:1344px;width:395px;min-height:151px;color:white;z-index:3;font:32px/1.16 UkrainianCourier,"Courier New",monospace;}
-.variants-left {left:305px;text-align:right;}
-.variants-right {left:740px;text-align:center;}
-.variant-text {margin:0;transition:opacity .22s ease,transform .32s ease;opacity:1;transform:translateY(0);}
-.variant-text.changing {opacity:0;transform:translateY(-20px);}
-@media(prefers-reduced-motion:reduce){.variant-text{transition:none}.f2-snake-bottom{animation:none}}
+/* RESTORE Figma Desktop-1 masked hands: same source image, original two masks and placement. */
+.frame-1 .hand-art {position:absolute;pointer-events:none;background-image:url("https://www.figma.com/api/mcp/asset/09512a54-9b41-40b4-b8f2-4b3dd12e9353.png");background-repeat:no-repeat;background-size:1359.834px 907.264px;opacity:1;z-index:0;}
+.frame-1 .hand-art-top {left:836px;top:-55px;width:712.739px;height:498.497px;background-position:-650.077px -100.82px;-webkit-mask:url("https://www.figma.com/api/mcp/asset/2b4d1268-24bc-4bbf-90be-d40bc55502fb.svg") center/100% 100% no-repeat;mask:url("https://www.figma.com/api/mcp/asset/2b4d1268-24bc-4bbf-90be-d40bc55502fb.svg") center/100% 100% no-repeat;}
+.frame-1 .hand-art-bottom {left:-162px;top:533px;width:823.535px;height:526.153px;background-position:99.069px -320.662px;-webkit-mask:url("https://www.figma.com/api/mcp/asset/4ef156cb-4523-4f46-9261-318f5ee2e9a3.svg") center/100% 100% no-repeat;mask:url("https://www.figma.com/api/mcp/asset/4ef156cb-4523-4f46-9261-318f5ee2e9a3.svg") center/100% 100% no-repeat;}
+.frame-1 > :not(.hand-art) {z-index:1;}
+/* Only the lower snake spins around its own center, no layout movement. */
+.frame-2 .f2-snake-bottom-anchor {position:absolute;left:-45px;top:1622px;width:362.083px;height:374.684px;transform:rotate(-17.81deg);transform-origin:50% 50%;}
+.frame-2 .f2-snake-bottom {left:0;top:0;width:100%;height:100%;transform:none;rotate:none;animation:snakeSpin 16s linear infinite;transform-origin:50% 50%;opacity:.38;}
+.frame-2 .f2-snake-top {animation:none;opacity:.36;}
+/* Parallax layers are moved with translate3d only, leaving their Figma positions untouched. */
+.frame-2 .f2-eye {will-change:transform;transform:translate3d(0,0,0);transition:none;}
