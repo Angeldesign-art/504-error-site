@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>504 error</title>
-  <link rel="stylesheet" href="/style.css?v=figma-rebuild-4">
+  <link rel="stylesheet" href="/style.css?v=figma-clean-5">
 </head>
 <body>
   <main id="frame1" class="page frame frame-1">
@@ -33,22 +33,18 @@
 
     <!-- Decorative snakes from the Figma composition. They are separate so they can rotate. -->
     <div class="f2-snake f2-snake-top" aria-hidden="true"></div>
-    <div class="f2-snake f2-snake-bottom" aria-hidden="true"></div>
+    <div class="f2-snake-bottom-anchor" aria-hidden="true"><div class="f2-snake f2-snake-bottom"></div></div>
 
     <!-- Eye-like background elements from the Figma composition. -->
     <div class="f2-eye f2-eye-right" aria-hidden="true"></div>
     <div class="f2-eye f2-eye-left" aria-hidden="true"></div>
 
     <h2 class="loop-heading">Петля</h2>
-    <div class="f2-text narrative narrative-first" id="narrativeFirst">
-      <p class="narrative-line" data-state="0">Создатель изменил ресурс — и изменил поведение тысяч людей.</p>
-      <p class="narrative-line" data-state="1">Люди начали обновлять страницу с надеждой на изменение, жаловаться на ошибку.</p>
-      <p class="narrative-line" data-state="2">Только благодаря коллективным следам создатель узнал об ошибке и может исправить.</p>
+    <div class="figma-variants variants-left" id="variantsLeft" aria-live="polite">
+      <p class="variant-text">Создатель изменил ресурс — и изменил поведение тысяч людей.</p>
     </div>
-    <div class="f2-text narrative narrative-second" id="narrativeSecond">
-      <p class="narrative-line" data-state="0">Ничего не изменилось.<br>Или тебе только кажется?<br>Попробуй ещё раз.</p>
-      <p class="narrative-line" data-state="1">Система не требует от тебя ничего.<br>Она просто оставляет возможность повторить действие.</p>
-      <p class="narrative-line" data-state="2">Ты можешь уйти.<br>Можешь закрыть вкладку.<br>Можешь попробовать ещё раз.</p>
+    <div class="figma-variants variants-right" id="variantsRight" aria-live="polite">
+      <p class="variant-text">Ничего не изменилось.<br>Или тебе только кажется?<br>Попробуй ещё раз.</p>
     </div>
     <div class="f2-center-image"></div>
   </main>
@@ -73,6 +69,6 @@
     </section>
   </div>
 
-  <script src="/app.js?v=figma-rebuild-4"></script>
+  <script src="/app.js?v=figma-clean-5"></script>
 </body>
 </html>
