@@ -32,7 +32,8 @@ if (isReload) {
 refreshCountEl.textContent = count;
 
 // First visit = Frame 1. Every actual reload has a 20% chance to land on Frame 2.
-const showFrame2 = isReload && Math.random() < FRAME2_CHANCE;
+const previewSecond = new URLSearchParams(location.search).get("page") === "2";
+const showFrame2 = previewSecond || (isReload && Math.random() < FRAME2_CHANCE);
 frame1.classList.toggle("active", !showFrame2);
 frame2.classList.toggle("active", showFrame2);
 frame1.setAttribute("aria-hidden", String(showFrame2));
@@ -99,7 +100,7 @@ function updateScroll() {
  if (!showFrame2) return;
  const scroll=Math.max(0,window.scrollY);
  // Different vertical speeds, never rotation; use local page scroll only.
- eyes.forEach((eye,i)=>{eye.style.transform=`translate3d(0,${(scroll*(i===0?-.12:.075)).toFixed(1)}px,0)`;});
+ eyes.forEach((eye,i)=>{eye.style.transform=`translate3d(0,${(scroll*(i===0?-.30:.22)).toFixed(1)}px,0)`;});
  const index=Math.min(2,Math.floor(scroll/310));
  if(index!==lastIndex) {
   lastIndex=index;
