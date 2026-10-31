@@ -522,3 +522,26 @@ background-size:100% 100%; will-change:transform; animation:none;}
   .frame-1 .hand-art-bottom {left:-162px;}
   .frame-1 .refresh-button {left:50%;transform:translateX(-50%);}
 }
+
+/* Frame 2: full viewport-width canvas, with the original 1440px Figma
+   composition centered. Existing layers, text, and animations are untouched. */
+@media (min-width:901px) {
+  .page.frame-2 {
+    width:100%;
+    max-width:none;
+  }
+  .frame-2 { --frame2-edge-offset: max(0px, calc((100vw - 1440px) / 2)); }
+  .frame-2 > .f2-text,
+  .frame-2 > .f2-title,
+  .frame-2 > .f2-img,
+  .frame-2 > .f2-snake,
+  .frame-2 > .f2-snake-bottom-anchor,
+  .frame-2 > .f2-eye,
+  .frame-2 > .loop-heading,
+  .frame-2 > .figma-variants,
+  .frame-2 > .f2-center-image,
+  .frame-2 > .f2-snake-text-backdrop {
+    margin-left:var(--frame2-edge-offset);
+  }
+  .frame-2 > .f2-center-image { margin-left:0; }
+}
