@@ -513,3 +513,12 @@ background-size:100% 100%; will-change:transform; animation:none;}
 
 /* Keep the bottom-left decorative graphic static; other animations remain unchanged. */
 .frame-2 .f2-snake-bottom { animation:none; }
+
+/* Frame 1: extend the canvas to viewport edges without scaling or editing artwork.
+   Only the first screen changes; frame 2 and all animations stay intact. */
+@media (min-width:901px) {
+  .page.frame-1 {width:100%;max-width:none;}
+  .frame-1 .hand-art-top {left:auto;right:-108.739px;}
+  .frame-1 .hand-art-bottom {left:-162px;}
+  .frame-1 .refresh-button {left:50%;transform:translateX(-50%);}
+}
