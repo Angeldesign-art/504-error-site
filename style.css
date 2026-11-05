@@ -545,3 +545,26 @@ background-size:100% 100%; will-change:transform; animation:none;}
   }
   .frame-2 > .f2-center-image { margin-left:0; }
 }
+
+/* Permanent local image assets exported from Figma.
+   Preserve the existing element geometry, layering and animations. */
+.frame-1 .hand-art-top {
+  background-image:url("./hand-top.png");
+  background-size:contain;
+  background-position:center;
+  -webkit-mask:none;
+  mask:none;
+}
+.frame-1 .hand-art-bottom {
+  background-image:url("./hand-bottom.png");
+  background-size:contain;
+  background-position:center;
+  -webkit-mask:none;
+  mask:none;
+}
+.frame-2 .f2-eye-left {
+  background-image:url("./eye-top-left.png");
+}
+.frame-2 .f2-eye-right {
+  background-image:url("./middle-right-eye.png");
+}
