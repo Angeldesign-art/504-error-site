@@ -90,3 +90,50 @@ html{scroll-behavior:smooth}
  .trace-pattern-a{left:-540px;top:-280px;animation-name:traceEdgeA}
  .trace-pattern-b{left:auto;right:-800px;top:40%;animation-name:traceEdgeB}
 }
+
+/* FIGMA 206:184 — reference coordinates from Desktop-3/4/5 (1440 x 1024).
+   These rules supersede the earlier experimental offsets. */
+@media(min-width:1101px){
+ .about-section{overflow:hidden}
+ .trace{height:1024px;min-height:1024px;padding:0;display:block;isolation:isolate}
+ .trace-pattern{position:absolute;z-index:1;pointer-events:none;opacity:1}
+ .trace-pattern img{display:block;width:100%;height:100%;object-fit:fill}
+ /* Group 24: 1074 x 964 at (720,182); Group 25: 1074 x 964 at (37,-424).
+    Exported SVGs have different intrinsic bounds, so keep aspect ratios. */
+ .trace-pattern-a{left:calc(50% + 0px);right:auto;top:182px;width:1074px;height:964px;animation:figmaGroup24 4.320597s linear infinite}
+ .trace-pattern-b{left:calc(50% - 683px);right:auto;top:-424px;width:1074px;height:964px;animation:figmaGroup25 4.320597s linear infinite}
+ .trace h1{position:absolute;top:calc(50% - 128px);left:50%;transform:translateX(-50%);width:min(1131px,calc(100% - 100px));font-size:clamp(72px,8.2vw,118px);line-height:1.08;text-align:center;margin:0;z-index:2}
+ .trace>p{position:absolute;top:642px;left:50%;transform:translateX(-50%);width:min(888px,calc(100% - 100px));font-size:30px;line-height:1.16;text-align:center;margin:0;z-index:2}
+ .story{min-height:1024px;padding:71px max(51px,calc((100vw - 1440px)/2 + 51px)) 110px;display:block;isolation:isolate}
+ .story h2{position:relative;top:auto;left:auto;width:100%;font-size:clamp(72px,8.2vw,118px);line-height:1.08;margin:0 0 70px;z-index:2}
+ .story-one,.story-two{position:relative;left:auto;top:auto;width:min(888px,calc(100% - 365px));max-width:none;font-size:clamp(22px,2.08vw,30px);line-height:1.16;margin:0 0 36px;z-index:2}
+ .story-ring{position:absolute;left:calc(50% + 338px);right:auto;top:639px;bottom:auto;width:587px;height:587px;opacity:1}
+ .story-ring-small{position:absolute;left:calc(50% + 124px);right:auto;top:71px;width:189px;height:189px;opacity:1}
+ .story-illustration{position:absolute;left:calc(50% + 245px);right:auto;top:208px;width:449px;height:486px;opacity:1}
+ .story-underline{position:absolute;left:calc(50% - 648px);right:auto;top:auto;bottom:35px;width:862px;max-width:none;height:auto;opacity:1}
+ .process{min-height:1024px;padding:71px max(69px,calc((100vw - 1440px)/2 + 69px)) 110px;display:flex;flex-direction:column;align-items:flex-end;gap:0}
+ .process h2{position:relative;left:auto;right:auto;top:auto;width:100%;font-size:clamp(72px,8.2vw,118px);line-height:1.08;margin:0 0 5px;text-align:right}
+ .process-intro{position:relative;left:auto;right:auto;top:auto;width:min(888px,100%);font-size:clamp(22px,2.08vw,30px);line-height:1.16;margin:0 0 65px;text-align:right}
+ .process-row{position:relative;top:auto;left:auto;right:auto;width:min(1160px,100%);min-height:0;display:grid;grid-template-columns:175px minmax(0,1fr);gap:50px;margin:0 0 30px;align-items:center;text-align:right}
+ .process-row img{width:183px;height:59px;max-width:none;transform:rotate(90deg);object-fit:contain;justify-self:center}
+ .process-row h3{font-size:47px;margin:0 0 10px}
+ .process-row p{font-size:clamp(22px,2.08vw,30px);line-height:1.16}
+}
+@keyframes figmaGroup24{
+  0%{transform:translate(196.743454px,-131.908371px)}
+  46.29%,100%{transform:translate(-305.798431px,375.954193px)}
+}
+@keyframes figmaGroup25{
+  0%{transform:translate(-470px,424px)}
+  46.29%,100%{transform:translate(0,0)}
+}
+@media(min-width:851px) and (max-width:1100px){
+ .trace-pattern-a{left:50%;right:auto;top:182px;width:1074px;height:964px;animation:figmaGroup24 4.320597s linear infinite}
+ .trace-pattern-b{left:calc(50% - 683px);right:auto;top:-424px;width:1074px;height:964px;animation:figmaGroup25 4.320597s linear infinite}
+ .trace-pattern img{object-fit:fill}
+}
+@media(max-width:850px){
+ .trace-pattern-a{left:50%;right:auto;top:182px;width:1074px;height:964px;animation:figmaGroup24 4.320597s linear infinite}
+ .trace-pattern-b{left:calc(50% - 683px);right:auto;top:-424px;width:1074px;height:964px;animation:figmaGroup25 4.320597s linear infinite}
+ .trace-pattern img{object-fit:fill}
+}
