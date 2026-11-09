@@ -568,3 +568,9 @@ background-size:100% 100%; will-change:transform; animation:none;}
 .frame-2 .f2-eye-right {
   background-image:url("./middle-right-eye.png");
 }
+
+/* Figma Desktop 2: new About project button. Existing elements unchanged. */
+.frame-2 .about-project-button{position:absolute;left:calc(50% - 265.5px);top:1844px;width:531px;height:66px;display:flex;align-items:center;justify-content:center;background:#282828;color:#fff;text-decoration:none;text-transform:uppercase;font-family:"Bitcount Grid Single","Courier New",monospace;font-size:21px;line-height:1;z-index:25;cursor:pointer}
+.frame-2 .about-project-button:focus-visible{outline:2px solid #fff;outline-offset:4px}
+@media(min-width:901px){.frame-2 .about-project-button{left:50%;transform:translateX(-50%)}}
+@media(max-width:900px){.frame-2 .about-project-button{width:min(531px,90%);left:5%;}}
