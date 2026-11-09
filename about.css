@@ -51,3 +51,42 @@ html{scroll-behavior:smooth}
  .process-row img{width:36px;height:110px}
  .process-row h3{font-size:28px}
 }
+
+/* Full-bleed art direction — desktop composition aligned to viewport edges. */
+@media(min-width:1101px){
+ .trace,.story,.process{width:100%;max-width:none}
+ .trace{overflow:hidden;clip-path:inset(0);isolation:isolate}
+ .trace-pattern{z-index:0;opacity:1;will-change:transform}
+ .trace h1,.trace>p{z-index:2}
+ .trace-pattern-a{left:-310px;top:-330px;width:720px;height:842px;animation-name:traceEdgeA}
+ .trace-pattern-b{left:auto;right:-470px;top:calc(100% - 590px);width:1075px;height:540px;animation-name:traceEdgeB}
+ .story{padding-left:clamp(55px,4vw,110px);padding-right:clamp(55px,4vw,110px);gap:clamp(34px,3.5vw,58px)}
+ .story h2{width:100%}
+ .story-one,.story-two{width:min(900px,64vw);max-width:calc(100% - 380px)}
+ .story-ring{right:-190px;left:auto;bottom:-170px;top:auto;width:587px;height:587px}
+ .story-ring-small{right:calc(22% + 50px);left:auto;top:90px;width:189px;height:189px}
+ .story-illustration{right:2%;left:auto;top:235px;width:min(31vw,449px);height:auto}
+ .story-underline{left:4%;right:auto;bottom:25px;top:auto;width:min(862px,62vw);max-width:none}
+ .process{padding-left:clamp(55px,4vw,110px);padding-right:clamp(55px,4vw,110px)}
+ .process h2,.process-intro,.process-row{margin-left:auto}
+ .process-row{width:min(1100px,86vw)}
+}
+@keyframes traceEdgeA{
+  0%{transform:translate(-270px,-180px)}
+  46.29%,100%{transform:translate(80px,180px)}
+}
+@keyframes traceEdgeB{
+  0%{transform:translate(280px,190px)}
+  46.29%,100%{transform:translate(-120px,-150px)}
+}
+@media(min-width:851px) and (max-width:1100px){
+ .trace{overflow:hidden;clip-path:inset(0)}
+ .trace-pattern-a{left:-360px;top:-310px;animation-name:traceEdgeA}
+ .trace-pattern-b{left:auto;right:-640px;top:40%;animation-name:traceEdgeB}
+ .story-one,.story-two{width:100%;max-width:100%}
+}
+@media(max-width:850px){
+ .trace{overflow:hidden;clip-path:inset(0)}
+ .trace-pattern-a{left:-540px;top:-280px;animation-name:traceEdgeA}
+ .trace-pattern-b{left:auto;right:-800px;top:40%;animation-name:traceEdgeB}
+}
