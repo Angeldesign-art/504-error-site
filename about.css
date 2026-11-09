@@ -250,3 +250,33 @@ html{scroll-behavior:smooth}
  .story .story-copy{width:100%;gap:36px!important}
  .story .story-copy .story-one,.story .story-copy .story-two{font-size:20px}
 }
+
+/* Figma arrows 206:142, 206:171, 206:173:
+   exported SVGs are VERTICAL (59x183, 59x183, 47x203).
+   Keep their intrinsic proportions BEFORE rotating 90 degrees.
+   The previous 183x59 object-fit box shrank each arrow to ~59px. */
+@media(min-width:1101px){
+ .process-row{position:relative}
+ .process-row img{
+   position:absolute!important;
+   display:block;
+   left:-105px!important;
+   top:50%!important;
+   right:auto!important;
+   width:59px!important;
+   height:183px!important;
+   max-width:none!important;
+   object-fit:fill!important;
+   transform:translateY(-50%) rotate(90deg)!important;
+   transform-origin:center center;
+   justify-self:auto!important;
+ }
+ .process-row.row-three img{width:47px!important;height:203px!important}
+}
+@media(min-width:851px) and (max-width:1100px){
+ .process-row img{width:59px!important;height:183px!important;object-fit:fill!important;transform:rotate(90deg)!important}
+ .process-row.row-three img{width:47px!important;height:203px!important}
+}
+@media(max-width:850px){
+ .process-row img{width:36px!important;height:110px!important;object-fit:contain!important;transform:rotate(90deg)!important}
+}
