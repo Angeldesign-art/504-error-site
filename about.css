@@ -280,3 +280,130 @@ html{scroll-behavior:smooth}
 @media(max-width:850px){
  .process-row img{width:36px!important;height:110px!important;object-fit:contain!important;transform:rotate(90deg)!important}
 }
+
+/* === Desktop - 5 / Figma node 206:123 — exact 1440 × 1024 composition ===
+   Replaces the experimental flex/grid/rotated-arrow layouts above. */
+.process{
+  position:relative!important;
+  display:block!important;
+  box-sizing:border-box!important;
+  width:1440px!important;
+  max-width:100%!important;
+  height:1024px!important;
+  min-height:1024px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:#151515;
+}
+.process>h2{
+  position:absolute!important;
+  left:auto!important;right:62px!important;top:71px!important;
+  display:block!important;width:1131px!important;height:256px!important;
+  margin:0!important;padding:0!important;
+  transform:none!important;
+  font-family:"UkrainianFuturis","Arial",sans-serif!important;
+  font-size:118px!important;font-weight:700!important;
+  line-height:normal!important;white-space:nowrap!important;
+  text-align:right!important;text-transform:uppercase!important;
+}
+.process>.process-intro{
+  position:absolute!important;
+  left:auto!important;right:69px!important;top:198px!important;
+  display:block!important;width:888px!important;max-width:888px!important;height:90px!important;
+  margin:0!important;padding:0!important;
+  font-family:"UkrainianCourier","Courier New",monospace!important;
+  font-size:30px!important;font-weight:400!important;line-height:normal!important;
+  text-align:right!important;
+}
+.process>.process-row{
+  position:absolute!important;
+  left:0!important;right:auto!important;top:0!important;
+  display:block!important;
+  width:100%!important;max-width:none!important;
+  height:0!important;min-height:0!important;
+  margin:0!important;padding:0!important;
+  overflow:visible!important;
+}
+.process>.row-one{top:0!important}
+.process>.row-two{top:0!important}
+.process>.row-three{top:0!important}
+.process>.process-row>div{
+  position:absolute!important;left:auto!important;right:69px!important;top:0!important;
+  display:block!important;width:888px!important;max-width:888px!important;min-width:0!important;
+  margin:0!important;padding:0!important;
+  text-align:right!important;
+}
+.process>.row-one>div{top:354px!important}
+.process>.row-two>div{top:532px!important;right:76px!important}
+.process>.row-three>div{top:798px!important;right:76px!important;width:567px!important;max-width:567px!important}
+.process>.process-row h3{
+  display:block!important;position:static!important;
+  width:100%!important;height:71px!important;
+  margin:0!important;padding:0!important;
+  font-family:"Segoe UI",Arial,sans-serif!important;
+  font-size:47px!important;font-weight:600!important;line-height:normal!important;
+  text-align:right!important;text-transform:uppercase!important;
+}
+.process>.process-row p{
+  display:block!important;position:absolute!important;
+  left:auto!important;right:0!important;top:71px!important;
+  width:888px!important;max-width:888px!important;height:auto!important;
+  margin:0!important;padding:0!important;
+  font-family:"UkrainianCourier","Courier New",monospace!important;
+  font-size:30px!important;font-weight:400!important;line-height:normal!important;
+  text-align:right!important;
+}
+.process>.row-three>div>p{width:567px!important;max-width:567px!important}
+.process>.process-row>img{
+  position:absolute!important;display:block!important;
+  left:189px!important;right:auto!important;
+  top:337px!important;
+  width:59px!important;height:183px!important;
+  max-width:none!important;max-height:none!important;
+  margin:0!important;padding:0!important;
+  object-fit:initial!important;
+  transform:none!important;transform-origin:initial!important;
+}
+.process>.row-two>img{top:553px!important}
+.process>.row-three>img{top:769px!important;width:47px!important;height:203px!important}
+.process>.row-one>img{animation:figmaArrowOne 2s linear infinite!important}
+.process>.row-two>img{animation:figmaArrowTwo 2s linear infinite!important}
+.process>.row-three>img{animation:figmaArrowThree 2s linear infinite!important}
+@keyframes figmaArrowOne{
+  0%{opacity:0}
+  37.161%{opacity:1}
+  100%{opacity:1}
+}
+@keyframes figmaArrowTwo{
+  0%,37.161%{opacity:0}
+  68.511%{opacity:1}
+  100%{opacity:1}
+}
+@keyframes figmaArrowThree{
+  0%,68.511%{opacity:0}
+  100%{opacity:1}
+}
+@media(max-width:1439px){
+ .process{width:100%!important}
+ .process>h2{right:4.3%!important;width:78.55%!important;font-size:clamp(54px,8.2vw,118px)!important}
+ .process>.process-intro{right:4.8%!important;width:61.67%!important;font-size:clamp(18px,2.08vw,30px)!important}
+ .process>.process-row>div{right:4.8%!important;width:61.67%!important}
+ .process>.row-two>div,.process>.row-three>div{right:5.28%!important}
+ .process>.row-three>div{width:39.38%!important}
+ .process>.process-row h3{font-size:clamp(27px,3.27vw,47px)!important}
+ .process>.process-row p{width:100%!important;font-size:clamp(18px,2.08vw,30px)!important}
+ .process>.row-three>div>p{width:100%!important}
+ .process>.process-row>img{left:13.125%!important}
+ .process>.row-three>img{width:47px!important;height:203px!important}
+}
+@media(max-width:700px){
+ .process{height:auto!important;min-height:1024px!important}
+ .process>h2{white-space:normal!important;height:auto!important}
+ .process>.process-intro{height:auto!important}
+ .process>.process-row>div{width:68%!important}
+ .process>.row-three>div{width:55%!important}
+ .process>.process-row p{font-size:17px!important}
+ .process>.process-row>img{left:9%!important;width:42px!important;height:130px!important}
+ .process>.row-three>img{width:38px!important;height:164px!important}
+}
